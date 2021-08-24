@@ -1,0 +1,217 @@
+
+$colors: (
+    "paleBlue": hsl(225, 100%, 94%),
+    "brightBlue": hsl(245, 75%, 52%),
+    "veryPaleBlue": hsl(225, 100%, 98%),
+    "desaturatedBlue": hsl(224, 23%, 55%),
+    "darkerBlue": hsl(223, 47%, 23%),
+    "btnPaymentHover": hsl(245, 83%, 68%),
+);
+
+$settings: (
+    "paddingX": 1.6rem,
+    "paddingY": 1.4rem,
+    "mxWidth" : 20rem,
+);
+
+@mixin toRemHeight($value) {
+    height: ($value / 16) + rem;
+}
+
+@function get_colors($color) {
+    @return map-get($colors , $color);
+}
+
+@function get_settings($setting) {
+    @return map-get($settings , $setting);
+}
+
+html{
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+
+body {
+    line-height: 1.4rem;
+    font-family: 'Red Hat Display', sans-serif;
+    padding: get_settings("paddingY") get_settings("paddingX");
+    background: get_colors(paleBlue) url("../images/pattern-background-desktop.svg") no-repeat;
+    background-size: contain;
+}
+
+
+a{
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: get_colors(darkerBlue);
+}
+
+p, span{
+    font-size: 1rem;
+    color: get_colors(desaturatedBlue);
+    font-weight: 500;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.card{
+    background-color: get_colors(veryPaleBlue);
+    border-radius: 0.75rem;
+    max-width: 22.8125rem;
+    box-shadow: 1px 1px 10px get_colors(desaturatedBlue);
+
+    &__main_content{
+        margin-inline: 2rem;
+
+        p{
+            letter-spacing: 1px;
+            line-height: 1.3rem;
+            font-size: 0.80rem;
+        }
+    }
+}
+
+.bg__img{
+    background-image: url("../images/illustration-hero.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    margin-bottom: 2.3125rem;
+    @include toRemHeight(178);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.plan{
+    display: flex;
+    margin: 0.90rem auto;
+
+    &_icon{
+        margin-top: 0.9375rem;
+        margin-left: 2.50rem;
+    }
+
+    &__amount{
+        font-size: 0.90rem;
+    }
+
+    h4{
+        margin-left: 1.0625rem;
+        margin-right: 0.84375rem;
+    }
+
+    a{
+        margin-top: 30px;
+        margin-left: 3.75rem;
+        color: get_colors(brightBlue);
+        font-size: 0.85rem;
+
+        &:hover{
+            text-decoration: none;
+            color: get_colors(desaturatedBlue);
+        }
+    }
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    margin-inline: 2.25rem;
+
+    .payment{
+        text-decoration: none;
+        font-size: 0.80rem;
+        padding: 0.65rem 2.3125rem;
+        border-radius: 0.75rem;
+        margin-bottom: 1rem;
+        background-color: get_colors(brightBlue);
+        color: get_colors(veryPaleBlue);
+        box-shadow: 1px 1px 5px get_colors(brightBlue);
+
+        &:hover{
+            background-color: get_colors(btnPaymentHover);
+        }
+    }
+
+    .cancel{
+        text-decoration: none;
+        font-size: 0.80rem;
+        color: get_colors(desaturatedBlue);
+        padding: 0.65rem 2.3125rem;
+        margin-bottom: 0.75rem;
+
+        &:hover{
+            color: get_colors(darkerBlue);
+        }
+    }
+
+}
+
+@media (max-width: 28rem) {
+    body{
+        background: get_colors(paleBlue) url("../images/pattern-background-mobile.svg") no-repeat;
+    }
+
+    h1{
+        font-size: 1.3rem;
+    }
+
+    .bg__img{
+        margin-bottom: 1.875rem;
+    }
+
+    .card__main_content{
+        margin-inline: 2.5rem;
+
+        p{
+            font-weight: normal;
+            font-size: 0.76rem;
+            line-height: 1.2rem;
+        }
+    }
+
+    .plan{
+        img{
+            width: 2.5rem;
+        }
+
+        &_icon{
+            margin-top: 1.2rem;
+            margin-left: 3rem;
+            max-width: 0.60rem;
+        }
+
+        h4{
+            font-size: 0.80rem;
+            margin-left: 3rem;
+        }
+
+        &__amount{
+            font-size: 0.80rem;
+        }
+
+        a {
+            margin-top: 1.7rem;
+            margin-inline: 1.6rem;
+        }
+    }
+
+    .buttons{
+        margin-inline: 1.45rem;
+    }
+}
